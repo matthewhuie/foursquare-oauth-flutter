@@ -6,12 +6,12 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-class FoursquareOauthPlugin: MethodCallHandler {
+class FoursquareOAuthPlugin: MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "foursquare_oauth")
-      channel.setMethodCallHandler(FoursquareOauthPlugin())
+      channel.setMethodCallHandler(FoursquareOAuthPlugin())
     }
   }
 
