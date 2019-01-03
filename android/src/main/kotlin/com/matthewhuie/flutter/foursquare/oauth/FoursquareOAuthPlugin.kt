@@ -57,8 +57,9 @@ class FoursquareOAuthPlugin: MethodCallHandler, PluginRegistry.ActivityResultLis
           methodCallResult.success(tokenResponse.accessToken)
         }
       }
+      else ->
+        methodCallResult.error("FOURSQUARE_OAUTH_ERROR", "Error while authenticating with Foursquare.", null)
     }
-    methodCallResult.error("FOURSQUARE_OAUTH_ERROR", "Error while authenticating with Foursquare.", null)
     return false
   }
 }
