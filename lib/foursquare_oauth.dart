@@ -4,10 +4,12 @@ import 'package:flutter/services.dart';
 
 class FoursquareOauth {
   static const MethodChannel _channel =
-      const MethodChannel('foursquare_oauth');
+      const MethodChannel('com.matthewhuie.flutter.foursquare.oauth');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  static String authenticate(String clientId, String clientSecret)  {
+    _channel.invokeMethod('authenticate', <String, String> {
+      'clientId': clientId,
+      'clientSecret': clientSecret
+    });
   }
 }
