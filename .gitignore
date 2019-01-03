@@ -9,5 +9,4 @@ build/
 
 .idea/
 *.iml
-example/
 local.properties
