@@ -12,7 +12,7 @@ import com.foursquare.android.nativeoauth.FoursquareOAuth
 class FoursquareOAuthPlugin: MethodCallHandler, PluginRegistry.ActivityResultListener {
   companion object {
     private lateinit var registrar: Registrar
-    private lateinit var clientID: String
+    private lateinit var clientId: String
     private lateinit var clientSecret: String
     private lateinit var methodCallResult: Result
 
@@ -32,10 +32,10 @@ class FoursquareOAuthPlugin: MethodCallHandler, PluginRegistry.ActivityResultLis
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method == METHOD_AUTHENTICATE) {
-      clientID = call.argument("clientId") ?: "FOURSQUARE_INVALID_CLIENT_ID"
+      clientId = call.argument("clientId") ?: "FOURSQUARE_INVALID_CLIENT_ID"
       clientSecret = call.argument("clientSecret") ?: "FOURSQUARE_INVALID_CLIENT_SECRET"
       methodCallResult = result
-      val intent = FoursquareOAuth.getConnectIntent(registrar.context(), clientID)
+      val intent = FoursquareOAuth.getConnectIntent(registrar.context(), clientId)
       registrar.activity().startActivityForResult(intent, REQUEST_CODE_FSQ_CONNECT)
     } else {
       result.notImplemented()
@@ -47,7 +47,7 @@ class FoursquareOAuthPlugin: MethodCallHandler, PluginRegistry.ActivityResultLis
       REQUEST_CODE_FSQ_CONNECT -> {
         val codeResponse = FoursquareOAuth.getAuthCodeFromResult(resultCode, data)
         if (codeResponse.exception == null) {
-          val intent = FoursquareOAuth.getTokenExchangeIntent(registrar.context(), clientID, clientSecret, codeResponse.code)
+          val intent = FoursquareOAuth.getTokenExchangeIntent(registrar.context(), clientId, clientSecret, codeResponse.code)
           registrar.activity().startActivityForResult(intent, REQUEST_CODE_FSQ_TOKEN_EXCHANGE)
         }
       }
