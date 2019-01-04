@@ -16,10 +16,10 @@ class FoursquareOAuthPlugin: MethodCallHandler, PluginRegistry.ActivityResultLis
     private lateinit var clientSecret: String
     private lateinit var methodCallResult: Result
 
-    private val METHOD_CHANNEL_NAME = "com.matthewhuie.flutter.foursquare.oauth"
-    private val METHOD_AUTHENTICATE = "authenticate"
-    private val REQUEST_CODE_FSQ_CONNECT = 200
-    private val REQUEST_CODE_FSQ_TOKEN_EXCHANGE = 201
+    private const val METHOD_CHANNEL_NAME = "com.matthewhuie.flutter.foursquare.oauth"
+    private const val METHOD_AUTHENTICATE = "authenticate"
+    private const val REQUEST_CODE_FSQ_CONNECT = 200
+    private const val REQUEST_CODE_FSQ_TOKEN_EXCHANGE = 201
 
     @JvmStatic
     fun registerWith(registrar: Registrar) {
@@ -32,8 +32,8 @@ class FoursquareOAuthPlugin: MethodCallHandler, PluginRegistry.ActivityResultLis
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method == METHOD_AUTHENTICATE) {
-      clientID = call.argument("clientId") ?: ""
-      clientSecret = call.argument("clientSecret") ?: ""
+      clientID = call.argument("clientId") ?: "FOURSQUARE_INVALID_CLIENT_ID"
+      clientSecret = call.argument("clientSecret") ?: "FOURSQUARE_INVALID_CLIENT_SECRET"
       methodCallResult = result
       val intent = FoursquareOAuth.getConnectIntent(registrar.context(), clientID)
       registrar.activity().startActivityForResult(intent, REQUEST_CODE_FSQ_CONNECT)
