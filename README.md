@@ -29,8 +29,9 @@ try {
 
 ## TODO
 - [x] Base Flutter project
-- [ ] Basic Android implementation
+- [x] Basic Android implementation
 - [ ] Basic iOS implementation
+- [x] Basic example Flutter app
 - [ ] Deeper Android/iOS implementation
 - [ ] More documentation
 
