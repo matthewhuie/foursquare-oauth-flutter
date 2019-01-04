@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftFoursquareOauthPlugin: NSObject, FlutterPlugin {
+public class SwiftFoursquareOAuthPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "foursquare_oauth", binaryMessenger: registrar.messenger())
-    let instance = SwiftFoursquareOauthPlugin()
+    let instance = SwiftFoursquareOAuthPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
