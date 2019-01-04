@@ -9,9 +9,22 @@ dependencies:
     git: git://github.com/matthewhuie/foursquare-oauth-flutter.git
 ```
 
-Import the package into your project.
+Import and implement the package into your project.
 ```dart
 import 'package:foursquare_oauth/foursquare_oauth.dart';
+
+...
+
+String accessToken;
+try {
+  accessToken = await FoursquareOAuth.authenticate(
+    'FOURSQUARE_CLIENT_ID',
+    'FOURSQUARE_CLIENT_SECRET');
+} on PlatformException {
+  setState(() {
+    _message = 'Error!';
+  });
+}
 ```
 
 ## TODO
