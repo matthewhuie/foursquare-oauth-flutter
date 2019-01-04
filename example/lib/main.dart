@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Widget userPhoto = new Text('');
   String _message;
 
   @override
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
          Map user = json.decode(response.body)['response']['user'];
          setState(() {
            _message = 'Hello, ${user['firstName']} ${user['lastName']}!';
+           userPhoto = new Image.network('${user['photo']['prefix']}100x100${user['photo']['suffix']}');
          });
     });
   }
@@ -54,7 +56,17 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Foursquare OAuth for Flutter'),
         ),
         body: Center(
-          child: Text('$_message\n'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              userPhoto,
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('$_message\n'),
+              ),
+            ],
+          ),
         ),
       ),
     );
