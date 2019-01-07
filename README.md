@@ -15,15 +15,18 @@ import 'package:foursquare_oauth/foursquare_oauth.dart';
 
 ...
 
-String accessToken;
-try {
-  accessToken = await FoursquareOAuth.authenticate(
-    'FOURSQUARE_CLIENT_ID',
-    'FOURSQUARE_CLIENT_SECRET');
-} on PlatformException {
-  setState(() {
-    _message = 'Error!';
-  });
+Future<void> fetchUser() async {
+  String accessToken;
+  try {
+    accessToken = await FoursquareOAuth.authenticate(
+      'FOURSQUARE_CLIENT_ID',
+      'FOURSQUARE_CLIENT_SECRET');
+  } on PlatformException {
+    setState(() {
+      _message = 'Error!';
+    });
+  }
+  // Do something with accessToken
 }
 ```
 
