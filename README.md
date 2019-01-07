@@ -15,7 +15,7 @@ import 'package:foursquare_oauth/foursquare_oauth.dart';
 
 ...
 
-Future<void> fetchUser() async {
+Future<void> authenticate() async {
   String accessToken;
   try {
     accessToken = await FoursquareOAuth.authenticate(
